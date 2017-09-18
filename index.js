@@ -59,8 +59,9 @@ function request (uri, options, callback) {
   }
   if(!options&&!uri.callback){
     return new Promise(callback=>{
-      let data=uri;
-      request(uri,(e,r,d)=>callback(d))
+      request(uri,
+        (e,r,d)=>d?callback(d):request(uri).then(callback)
+      )
     })
   }
   var params = initParams(uri, options, callback)
