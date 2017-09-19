@@ -45,7 +45,7 @@ function request (uri, options, callback) {
   }
 
   if(uri.post){
-    uri.form=data.post;
+    uri.form=uri.post;
     uri.method='POST';
       delete uri.post;
   }
